@@ -1,0 +1,94 @@
+@import '../../../../styles/colors.module.sass'
+
+.navHome
+    background-color: $black
+    padding: 1em .3em
+    display: flex
+    //align-items: center
+
+    .nav
+        display: flex
+        justify-content: space-between
+        //align-items: space
+        gap: 10px
+        flex-direction: column
+
+        .brandMenu
+            justify-content: space-between
+            .logo
+                width: 100%
+            
+            .navButton
+            display: flex
+            gap: 0.5em
+            align-items: center
+            //justify-content: right
+
+            .btnCadastro, .btnLogin
+                background-color: transparent
+                font-size: .8em
+                font-weight: bold
+                border-color: $black 
+            
+            .btnCadastro
+                color: $orange
+
+                &:hover
+                    background-color: $orange
+                    color: $black
+                    font-weight: bold
+                    border-color: $black
+                    box-shadow: inset 0 0 10px $black    
+            
+            .btnLogin
+                color: $white
+
+                &:hover
+                    background-color: transparent
+                    color: $white
+                    border: 1px solid $white   
+
+        .search
+            width: 100%
+
+            input
+                border: 1px solid $black
+                width: calc(100% - 40px)
+                height: 40px
+                padding-left: 1em
+                font-weight: 500
+                border-radius: 6px 0 0 6px
+                vertical-align: middle
+                border-right: none
+
+                &::placeholder
+                    margin-left: 1em
+                    vertical-align: middle
+                    font-weight: 500
+                    color: $mediumGray
+                
+            img
+                margin:0 
+                border: 1px solid $black
+                width: 40px
+                height: 40px
+                border-radius: 0 6px 6px 0
+                background-color: $orange
+                vertical-align: middle
+                border-left: none
+                padding:10px
+                
+                // img
+                //     width: 80%
+                //     vertical-align: middle
+                //     color: $white
+
+// @media screen and (max-width: 770px)
+//     .nav
+//         flex-wrap: wrap
+
+//         .logo
+//             width: 40%
+
+//         .search
+//             width: 50%
