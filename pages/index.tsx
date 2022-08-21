@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Script from "next/script";
+import Featured from "../src/components/home/featured";
 import Header from "../src/components/home/header";
 import HeaderNoAuth from "../src/components/home/headerNoAuth";
 import styles from '../styles/Home.module.sass';
@@ -17,6 +18,7 @@ const Home = () =>{
       </Head>
       <main>
         <HeaderNoAuth/>
+        <Featured/>
         <h1>Teste</h1>
       </main>
     </>

@@ -5,9 +5,9 @@ import { Button, Collapse, Container, Nav, Navbar, NavbarBrand, NavbarToggler, N
 import styles from './styles.module.sass'
 
 const HeaderNoAuth = function () {
-    const [collapsed, setCollapsed] = useState(true);
+    // const [collapsed, setCollapsed] = useState(true);
 
-    const toggleNavbar = () => setCollapsed(!collapsed);
+    // const toggleNavbar = () => setCollapsed(!collapsed);
 
     return (
         <>

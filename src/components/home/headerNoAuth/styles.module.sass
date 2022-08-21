@@ -22,6 +22,7 @@
             display: flex
             gap: 0.5em
             align-items: center
+            flex-direction: row
             //justify-content: right
 
             .btnCadastro, .btnLogin
@@ -77,18 +78,10 @@
                 vertical-align: middle
                 border-left: none
                 padding:10px
-                
-                // img
-                //     width: 80%
-                //     vertical-align: middle
-                //     color: $white
 
-// @media screen and (max-width: 770px)
-//     .nav
-//         flex-wrap: wrap
+@media screen and (max-width: 575px)
+    .navButton
+        display: flex
+        justify-content: flex-end
+        flex-direction: column
 
-//         .logo
-//             width: 40%
-
-//         .search
-//             width: 50%
