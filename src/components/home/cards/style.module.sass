@@ -1,0 +1,130 @@
+@import '../../../../styles/colors.module.sass' 
+
+.productContainer
+    min-height: 330px
+    margin: 0 .5em
+    .product
+        max-width: 350px
+        max-height: 270px
+        overflow: hidden
+        padding: .6em
+        display: flex
+        flex-direction: column
+        align-items: center
+        border-radius: 10px
+        background-color: $white
+        transition: 1s
+        // margin-bottom: .5em
+
+        .productDetails
+            cursor: pointer
+            .alignTop
+                padding-top: 10px
+                width: 100%
+                .image
+                    display: flex
+                    justify-content: center
+                    align-items: flex-start
+
+                    img
+                        border-radius: 1em
+                        // width: auto
+                        // height: auto
+                        width: 200px
+                        height: 153px
+                        object-fit: cover
+                        //padding: 0 2em
+
+                p
+                    text-align: center
+                    font-weight: 500
+
+            .prices
+                padding: 10px 0
+                display: flex
+                width: 100%
+                justify-content: center
+                gap: 10px
+
+                .discount
+                    margin: 10px 0
+                    background-color: $discount
+                    border-radius: 8px
+                    padding: 3px 10px
+                    font-size: 1.3em
+                    font-weight: 700
+                    color: $white
+                
+                .oldPrice
+                    color: $mediumGray
+                    font-weight: 500
+                    font-size: 1.1em
+                    text-decoration: line-through
+                
+                .newPrice
+                    font-size: 1.9em
+                    font-weight: 700
+
+        .buttons
+            // display: none
+            display: flex
+            gap: 10px
+            opacity: 0
+            transition: .2s
+
+            .buyNow
+                color: $black
+                font-size: .7em
+                background-color: $orange
+                font-weight: 700
+
+                &:hover
+                    box-shadow: inset 0 0 10px $black
+            
+            .addCart
+                color: $orange
+                font-size: .7em
+                font-weight: 700
+                border-color: $orange
+
+                &:hover
+                    background-color: $orange
+                    color: $white
+        
+        .favorite
+            position: absolute
+            margin: 11px 0 0 120px
+            color: $pink
+            width: 30px
+            opacity: 0
+            transition: all .5s ease-in-out
+            &:hover
+                cursor: pointer
+                filter: drop-shadow(0 0 2px $mediumGray)
+        &:hover
+            box-shadow: 0 0 10px $mediumGray
+            max-height: 350px
+
+            .buttons
+                opacity: 1
+            .favorite
+                opacity: .6
+
+@media (max-width: 992px)
+    .productContainer
+        margin: 0
+        width: 330px
+        
+        
+        .product
+            justify-content: center
+            max-height: 350px
+            border: 1px solid $mediumGray
+            border-radius: 0
+            margin: 0 .5em
+            .buttons
+                opacity: 1
+            
+            .favorite
+                opacity: .6
+                margin: -120px 0 0 127px

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { Button, Collapse, Container, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import styles from './styles.module.sass'
+import { faShoppingCart, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const HeaderNoAuth = function () {
     // const [collapsed, setCollapsed] = useState(true);
@@ -28,8 +29,11 @@ const HeaderNoAuth = function () {
                             <Link href='/login'>
                                 <Button className={styles.btnLogin}>Login</Button>
                             </Link>
-                            {/*<img /> Cart Icon 
-                            <FontAwesomeIcon icon='fa-solid fa-cart-shopping' />*/}
+                            {/*<img /> Cart Icon */}
+                            <FontAwesomeIcon icon={faShoppingCart} className={styles.cartIcon}/>
+                            <Link href='/carrinho'>
+                                <span className={styles.prodquantity}>10</span>
+                            </Link>
                         </div>
                     </div>
                     <div className={styles.search}>
@@ -37,11 +41,8 @@ const HeaderNoAuth = function () {
                             type={'search'}
                             placeholder="Encontre aqui tudo para seu evento"
                             className={styles.searchInput}></input>
-                        {/* <div className={styles.btnSearch}>
-                            <img src='lupa.png'/>
-                        </div> */}
-                        <img src='lupa.png'/>
-                    </div>
+                            <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.btnSearch}/>
+                        </div>
                 </Container>
                 <div >
 

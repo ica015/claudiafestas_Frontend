@@ -27,7 +27,7 @@
 
             .btnCadastro, .btnLogin
                 background-color: transparent
-                font-size: .8em
+                font-size: 1em
                 font-weight: bold
                 border-color: $black 
             
@@ -48,7 +48,20 @@
                     background-color: transparent
                     color: $white
                     border: 1px solid $white   
-
+            .cartIcon
+                color: $white
+                width: 45px
+                margin-left: 5px
+            .prodquantity
+                position: absolute
+                text-align: center
+                width: 45px
+                height: 42px
+                margin-left: -44px
+                margin-top: 0px
+                font-size: 1em
+                cursor: pointer
+                font-weight: 800
         .search
             width: 100%
 
@@ -68,7 +81,7 @@
                     font-weight: 500
                     color: $mediumGray
                 
-            img
+            .btnSearch
                 margin:0 
                 border: 1px solid $black
                 width: 40px
@@ -78,10 +91,22 @@
                 vertical-align: middle
                 border-left: none
                 padding:10px
+                color: $white
+                &:hover
+                    cursor: pointer
 
 @media screen and (max-width: 575px)
-    .navButton
-        display: flex
-        justify-content: flex-end
-        flex-direction: column
+    .navHome
+        .nav
+            .brandMenu
+                .navButton
+                    display: flex
+                    justify-content: flex-end
+                    flex-direction: column-reverse
+                    align-items: flex-end
+                    align-content: flex-end
 
+                .cartIcon
+                    margin-right: 12px
+                .prodquantity
+                    margin-right: 10px
