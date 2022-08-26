@@ -1,24 +1,28 @@
 import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons'
 import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-//import { faStar } from '@fnt'
 import Link from 'next/link'
 import { Container, Button } from 'reactstrap'
 import styles from './style.module.sass'
+import { ProductType } from '../../../services/ProductService'
 
-export default function ProductsList() {
+interface props {
+    product: ProductType
+}
+
+export default function Cards({product}:props) {
     return (
         <>
             <Container className='d-flex flex-wrap justify-content-center mt-4'>
                 <div className={styles.productContainer}>
                     <div className={styles.product}>
-                        <Link href='/product/id'>
+                        <Link href={`${process.env.NEXT_PUBLIC_BASEURL}/product/${product.id}`}>
                             <div className={styles.productDetails}>
                                 <div className={styles.alignTop}>
                                     <div className={styles.image}>
-                                        <img src="/products/vela_numero.jpg" alt="Descrição da Imagem" />
+                                        <img src={`${process.env.NEXT_PUBLIC_BASEURL}/${product.imageUrl}`} alt={`${product.name}`} />
                                     </div>
-                                    <p>Vela de número colorida</p>
+                                    <p>{`${product.name}`}</p>
                                 </div>
                                 <div className={styles.prices}>
                                     <span className={styles.discount}>10%</span>
@@ -34,7 +38,7 @@ export default function ProductsList() {
                         </div>
                     </div>
                 </div>
-                <div className={styles.productContainer}>
+                {/* <div className={styles.productContainer}>
                     <div className={styles.product}>
                         <Link href='/product/id'>
                             <div className={styles.productDetails}>
@@ -153,7 +157,7 @@ export default function ProductsList() {
                             <Button className={styles.addCart} outline>Adicionar ao Carrinho</Button>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
 
             </Container>
