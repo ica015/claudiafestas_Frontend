@@ -29,6 +29,9 @@ const ProductService = {
         })
 
         return res
+    },
+    calcDiscount: (OldPrice: number, newPrice: number) => {
+        return ((1- (newPrice / OldPrice))*100).toFixed(2) 
     }
 }
 

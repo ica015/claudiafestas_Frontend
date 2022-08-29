@@ -1,14 +1,20 @@
+import { GetStaticProps } from "next";
 import Head from "next/head";
 import Script from "next/script";
-import ProductsList from "../src/components/home/cards";
-import CardsProducts from "../src/components/home/CardsProducts/indes";
+import { ReactNode } from "react";
+import ProductsList from "../src/components/common/cards";
+import CardsProducts from "../src/components/home/CardsProducts";
 import Featured from "../src/components/home/featured";
 import Header from "../src/components/home/header";
 import HeaderNoAuth from "../src/components/home/headerNoAuth";
+import ProductService, { ProductType } from "../src/services/ProductService";
 import styles from '../styles/Home.module.sass';
 
-
-const Home = () =>{
+interface IndexPageProps{
+  //children?: ReactNode,
+  products: ProductType[]
+}
+const Home = ({products}: IndexPageProps) =>{
   return(
     <>
       <Head>
@@ -21,11 +27,20 @@ const Home = () =>{
       <main>
         <HeaderNoAuth/>
         <Featured/>
-        {/* <CardsProducts/> */}
+        <CardsProducts product={products}/>
         <h1>Teste</h1>
       </main>
     </>
   )
 }
 
+export const getStaticProps: GetStaticProps = async () => {
+  const res = await ProductService.getRandonProducts()
+  return{
+    props: {
+      products: res.data
+    },
+    revalidate: 3600 * 24
+  }
+}
 export default Home;
