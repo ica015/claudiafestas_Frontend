@@ -3,6 +3,7 @@ import Head from "next/head";
 import Script from "next/script";
 import { ReactNode } from "react";
 import ProductsList from "../src/components/common/cards";
+import Footer from "../src/components/common/footer";
 import CardsProducts from "../src/components/home/CardsProducts";
 import Featured from "../src/components/home/featured";
 import Header from "../src/components/home/header";
@@ -11,7 +12,7 @@ import ProductService, { ProductType } from "../src/services/ProductService";
 import styles from '../styles/Home.module.sass';
 
 interface IndexPageProps{
-  //children?: ReactNode,
+  children?: ReactNode,
   products: ProductType[]
 }
 const Home = ({products}: IndexPageProps) =>{
@@ -29,6 +30,7 @@ const Home = ({products}: IndexPageProps) =>{
         <Featured/>
         <CardsProducts product={products}/>
         <h1>Teste</h1>
+        <Footer/>
       </main>
     </>
   )
