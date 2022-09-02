@@ -1,4 +1,4 @@
-import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'
+import { faFacebook, faInstagram, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 import { faBagShopping, faBell, faHouseChimney, faStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
@@ -10,6 +10,21 @@ export default function Footer(){
         <>
             <div className={styles.backgroundColor}>
                 <Container className={styles.container}>
+                    <h5>Visite também nossas Redes Sociais</h5>
+                    <div className={styles.socialMedia}>
+                        <Link href='https://www.facebook.com/ClaudiaFestasBuffet'>
+                            <div>
+                                <FontAwesomeIcon icon={faFacebook} className={styles.facebook} />
+                                <span>ClaudiaFestasBuffet</span>
+                            </div>
+                        </Link>
+                        <Link href='https://www.instagram.com/claudiafestasbuffet/'>
+                            <div>
+                                <FontAwesomeIcon icon={faInstagram} className={styles.instagram} />
+                                <span>@claudiafestasbuffet</span>
+                            </div>
+                        </Link>
+                    </div>
                     <div className={styles.datas}>
                         <div className={styles.leftSide}>
                             <p>(12) 3103-1286</p>
