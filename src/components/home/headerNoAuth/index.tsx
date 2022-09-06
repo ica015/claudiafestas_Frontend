@@ -1,18 +1,24 @@
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Collapse, Container, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import styles from './styles.module.sass'
 import { faShoppingCart, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import Aos from 'aos';
+import 'aos/dist/aos.css'
+
 
 const HeaderNoAuth = function () {
     // const [collapsed, setCollapsed] = useState(true);
 
     // const toggleNavbar = () => setCollapsed(!collapsed);
-
+    useEffect(()=>{
+      Aos.init()  
+    },[])
+    
     return (
         <>
-            <div className={styles.navHome}>
+            <div className={styles.navHome} >
                 <Container className={styles.nav}>
                     <div className={styles.brandMenu}>
                         <NavbarBrand href='/'>

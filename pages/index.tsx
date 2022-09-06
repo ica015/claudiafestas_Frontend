@@ -11,6 +11,7 @@ import HeaderNoAuth from "../src/components/home/headerNoAuth";
 import ProductService, { ProductType } from "../src/services/ProductService";
 import styles from '../styles/Home.module.sass';
 
+
 interface IndexPageProps{
   children?: ReactNode,
   products: ProductType[]

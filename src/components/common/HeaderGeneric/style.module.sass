@@ -1,0 +1,32 @@
+@import '../../../../styles/colors.module.sass'
+
+.header
+    background-color: $black
+    padding: 1em .3em
+    display: flex
+
+    .headerContainer
+        display: flex
+        flex-wrap: wrap
+        justify-content: space-between
+        align-items: center
+        // padding: 1.5em 0
+        gap: 1em
+
+        .headerLogo
+            cursor: pointer
+                
+
+    .headerBtn
+        padding: .5em 2em
+        font-weight: bold
+        transition: .4s
+        &:hover
+            background-color: $orange
+            border-color: $orange
+        
+@media screen and ( max-width:483px  )
+    .header
+        .headerContainer
+            justify-content: center
+    

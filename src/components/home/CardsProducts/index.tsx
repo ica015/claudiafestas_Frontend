@@ -1,16 +1,17 @@
 import Cards from "../../common/cards";
 import { ProductType } from '../../../services/ProductService'
-
 import { Container } from 'reactstrap'
+
 
 interface props{
     product:ProductType[]
   }
 
 export default function CardsProducts({ product } : props) {
+
     return (
         <>
-            <Container className='d-flex flex-wrap justify-content-center mt-4'>
+            <Container className='d-flex flex-wrap justify-content-center mt-4' data-aos='fade-zoom-in' data-aos-duration='1600'>
                 {  
                     // console.log(product.products[0])
                     product.products.map((product: any) =>(

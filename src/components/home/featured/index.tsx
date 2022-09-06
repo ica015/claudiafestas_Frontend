@@ -1,10 +1,18 @@
 import Link from 'next/link';
 import { Card, CardSubtitle, Container } from 'reactstrap';
 import styles from './styles.module.sass'
+import Aos from 'aos';
+import 'aos/dist/aos.css'
+import { useEffect } from 'react';
+
 const Featured = ()=>{
+
+    useEffect(()=>{
+        Aos.init()
+    }, [])
     return (
         <>
-            <div className={styles.featured}>
+            <div className={styles.featured} data-aos='slide-left' data-aos-duration='1200'>
                 <Container className={styles.featuredContainer} >
                     <Link href='/meninos'>    
                         <Card className={styles.card}>

@@ -6,15 +6,24 @@ import { Container, Button } from 'reactstrap'
 import styles from './style.module.sass'
 import ProductService, { OptionalType, ProductType } from '../../../services/ProductService'
 
+import AOS from 'aos';
+import 'aos/dist/aos.css'
+import { useEffect } from "react";
+
 interface props {
     product: ProductType,
     // optional: OptionalType[]
 }
 
 export default function Cards({ product }:props) {
+
+    useEffect(()=>{
+        AOS.init()
+    }, [])
+    
     return (
         <>
-            <div className={styles.productContainer}>
+            <div className={styles.productContainer}data-aos='flip-left' data-aos-duration='1000'>
                 <div className={styles.product}>
                     <Link href={`/produto/${product.id}`}>
                         <div className={styles.productDetails}>
