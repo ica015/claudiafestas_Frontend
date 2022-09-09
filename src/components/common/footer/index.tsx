@@ -15,7 +15,7 @@ export default function Footer() {
 
     return (
         <>
-            <div className={styles.backgroundColor} data-aos='fade-up' data-aos-duration='1000'>
+            <div className={styles.backgroundColor} >{/* data-aos='fade-up' data-aos-duration='1000'>*/}
                 <Container className={styles.container}>
                     <div className={styles.info}>
                         <div>

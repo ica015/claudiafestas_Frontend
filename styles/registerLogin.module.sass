@@ -1,0 +1,85 @@
+@import './colors.module.sass'
+
+.main
+    background: $lightGray
+
+    .formTitle
+        font-size: 2.5em
+        font-weight: 600
+        margin-bottom: .5em
+        color: $mediumBlack
+
+    .form
+        width: 600px
+        margin: 0 auto
+
+        .formGroup
+            margin: .5em 0!important
+            
+            .label
+                font-size: .7em
+                font-weight: bold
+                position: absolute
+                margin-top: -2.4em
+                padding-left: 1.4em
+                transition: 1s
+            
+
+            .input
+                margin-top: 2.5em
+                padding-left: 1em
+                border: none
+                border-bottom: 1px solid $black
+                border-bottom-left-radius: 0
+                border-bottom-right-radius: 0
+                box-shadow: 0 2px 5px $darkGray
+                color: transparent
+                
+
+                &::placeholder
+                    padding-left: 3em
+                    font-weight: 500
+                    opacity: .5
+                    transition: 1s
+
+                &:focus, &:valid
+                    box-shadow: 0 0 5px $orange, 0 0 5px $orange
+                    color: $mediumBlack
+                    ~ .label
+                        font-size: 1em
+                        margin-top: -4em
+                        padding-left: .5em
+                    &::placeholder
+                        padding-left: 0
+                        
+        
+        hr
+            margin: 2em 0 1em 0
+            border: 2px solid $mediumBlack
+            border-radius: 5px
+        
+        p
+            font-size: 1.3em
+            // padding: .5em 0
+
+        .formBtn
+            display: block
+            margin: 2em auto 1em auto
+            padding: .5em 2em
+            text-transform: uppercase
+            color: $black
+            font-size: 1.2em
+            font-weight: 600
+            background: $orange
+            transition: .5s
+            &:hover
+                background: $black
+                color: $white
+
+@media screen and ( max-width: 992px )
+
+    .main
+        .formTitle
+            text-align: center
+        .form
+            max-width: 95%
