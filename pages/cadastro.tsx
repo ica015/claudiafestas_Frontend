@@ -42,7 +42,7 @@ const Register = function (){
 
         const {data, status} = await authService.register(params)
         if (status === 201){
-            router.push('/login?cadastrado=true')
+            router.push('/login?registred=true')
         }else{
             setToastIsOpen(true)
             setTimeout(()=>{

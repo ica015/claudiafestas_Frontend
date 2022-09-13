@@ -41,11 +41,14 @@ const authService = {
     },
     login: async (params:LoginParams)=>{
         const res = await api.post('/login',params).catch((error)=>{
-            if(error.response.status === 400){
+            if(error.response.status === 400 || error.response.status === 401){
                 return error.response
             }
             return error
         })
+        if (res.status === 201){
+            sessionStorage.setItem('cf-token', res.data.token)
+        }
         return res
     }
 }

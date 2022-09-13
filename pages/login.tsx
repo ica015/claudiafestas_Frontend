@@ -7,23 +7,49 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons"
 import authService from "../src/services/authService"
 import Link from "next/link"
-import { FormEvent } from "react"
+import { FormEvent, useEffect, useState } from "react"
+import { useRouter } from "next/router"
+import ToastComponent from "../src/components/common/toast"
 
 const Login = ()=>{
+    const router = useRouter()
+    const [toastColor, setToastColor] = useState('')
+    const [toastIsOpen, setToastIsOpen] = useState(false)
+    const [toastMessage, setToastMessage] = useState('')
+
+    const registerSuccess = router.query.registred
+
+    useEffect(()=>{
+        if(registerSuccess === 'true'){
+            setToastColor('bg-success')
+            setToastIsOpen(true)
+            setTimeout(()=>{
+                setToastIsOpen(false)
+            }, 1000 * 3)
+            setToastMessage('Registro realizado com sucesso!')
+        }
+    },[router.query])
+
     const handleLogin = async (event: FormEvent<HTMLFormElement>)=>{
         event.preventDefault()
 
         const formData = new FormData(event.currentTarget)
         const email = formData.get('email')!.toString()
         const password = formData.get('password')!.toString()
-        const stayLogged = formData.get('stayLogged')
-        const params = {email, password, stayLogged}
+        const staylogged = Boolean(formData.get('stayLogged'))
 
-        const {data, status} = await authService.login(params)
+        const params = {email, password, staylogged}
+
+        const {status} = await authService.login(params)
         if(status === 201){
-            alert('Login realizado com sucesso')
+            router.push('/')
         }else{
-            alert(data.message)
+            setToastColor('bg-danger')
+            setToastIsOpen(true)
+            setTimeout(()=>{
+                setToastIsOpen(false)
+            }, 1000 * 3)
+            setToastMessage('Email ou senha incorretos')
         }
     }
 
@@ -92,6 +118,11 @@ const Login = ()=>{
                             </Button>
                         </div>
                     </Form>
+                    <ToastComponent 
+                        color={toastColor}
+                        isOpen={toastIsOpen}
+                        message={toastMessage}
+                    />
                 </Container>
                 <Footer/>
             </main>
