@@ -3,8 +3,55 @@ import Head from 'next/head'
 import HeaderGeneric from '../src/components/common/HeaderGeneric';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 import Footer from '../src/components/common/footer';
+import { FormEvent, useState } from 'react';
+import authService from '../src/services/authService';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { useRouter } from 'next/router';
+import ToastComponent from '../src/components/common/toast';
+
 
 const Register = function (){
+    const router = useRouter()
+    const [ToastIsOpen, setToastIsOpen] = useState(false)
+    const [ToastMessage, setToastMessage] = useState("")
+
+    const handleRegister = async (event: FormEvent<HTMLFormElement>)=>{
+        event.preventDefault()
+
+        const formData = new FormData(event.currentTarget)
+        const name = formData.get('name')!.toString()
+        const email = formData.get('email')!.toString()
+        const password = formData.get('password')!.toString()
+        const passwordValidate = formData.get('passwordValidate')!.toString()
+        const nickname = formData.get('nickname')!.toString()
+        const cpf = formData.get('cpf')!.toString()
+        const birth = formData.get('birth')!.toString()
+        const phone = formData.get('phone')!.toString()
+        const celphone = formData.get('celphone')!.toString()
+        const params = {name, email, password, nickname, cpf, birth, phone, celphone}
+
+        if (password != passwordValidate){
+            setToastIsOpen(true)
+            setTimeout(()=>{
+                setToastIsOpen(false)
+            }, 1000 * 3)
+            setToastMessage('Senha e confirmação diferentes')
+            return
+        }
+
+        const {data, status} = await authService.register(params)
+        if (status === 201){
+            router.push('/login?cadastrado=true')
+        }else{
+            setToastIsOpen(true)
+            setTimeout(()=>{
+                setToastIsOpen(false)
+            }, 1000 * 3)
+            setToastMessage(data.message)
+        }
+    }
+
     return(
         <>
             <Head>
@@ -20,7 +67,7 @@ const Register = function (){
                 />
                 <Container className='py-3'>
                     <p className={styles.formTitle}><strong>Crie sua conta</strong></p>
-                    <Form className={styles.form}>
+                    <Form className={styles.form} onSubmit={handleRegister}>
                         <p className='text-left'>
                             <strong>Dados de Acesso</strong>
                         </p>
@@ -45,19 +92,39 @@ const Register = function (){
                                 minLength={6}
                                 className={styles.input}
                             />
+                            <FontAwesomeIcon 
+                                icon={faEyeSlash}
+                                className={styles.show}    
+                            />
+                            <FontAwesomeIcon 
+                                id='iconPassword'
+                                icon={faEye}
+                                className={styles.show}
+                                onClick={()=>{authService.showPassword('password', 'iconPassword')}}    
+                            />
                             <Label for='password' className={styles.label} >Senha</Label>
                         </FormGroup>
                         <FormGroup className={styles.formGroup}>
                             <Input 
-                                id='passwordvalidate'
-                                name='passwordvalidate'
+                                id='passwordValidate'
+                                name='passwordValidate'
                                 type='password'
                                 // placeholder='Confirme a sua senha'
                                 required
                                 minLength={6}
                                 className={styles.input}
                             />
-                            <Label for='passwordvalidate' className={styles.label} >Confirme sua senha</Label>
+                            <FontAwesomeIcon 
+                                icon={faEyeSlash}
+                                className={styles.show}    
+                            />
+                            <FontAwesomeIcon 
+                                id='iconPasswordValidate'
+                                icon={faEye}
+                                className={styles.show}
+                                onClick={()=>{authService.showPassword('passwordValidate', 'iconPasswordValidate')}}    
+                            />
+                            <Label for='passwordValidate' className={styles.label} >Confirme sua senha</Label>
                         </FormGroup>
                         <hr/>
                         <p className='text-left'>
@@ -134,12 +201,19 @@ const Register = function (){
                             />
                             <Label for='phone' className={styles.label} >Telefone Adicional</Label>
                         </FormGroup>
-                        <Button type='submit' outline className={styles.formBtn}>
-                            Cadastrar
-                        </Button>
+                        <div className={styles.menuBtnForm}>
+                            <Button type='submit' outline className={styles.formBtn}>
+                                Cadastrar
+                            </Button>
+                        </div>
                     </Form>
                 </Container>
                 <Footer/>
+                <ToastComponent 
+                    color='bg-danger'
+                    isOpen={ToastIsOpen}
+                    message={ToastMessage}
+                />
             </main>
         </>
     )
