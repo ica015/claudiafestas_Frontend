@@ -1,20 +1,34 @@
-import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { Button, Collapse, Container, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
+import { Container, NavbarBrand, Button } from 'reactstrap'
+import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import styles from './styles.module.sass'
-import { faShoppingCart, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import Aos from 'aos';
-import 'aos/dist/aos.css'
+import { faMagnifyingGlass, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import HeaderNoAuthMenu from './headerNoAuthMenu';
+import HeaderAuth from './headerAuthMenu';
+import { useRouter } from 'next/router';
 
-
-const HeaderNoAuth = function () {
+const HeaderDefault = function(){
+    const router = useRouter()
     // const [collapsed, setCollapsed] = useState(true);
 
     // const toggleNavbar = () => setCollapsed(!collapsed);
+    const [isLogged, setIsLogged] = useState(false)
     useEffect(()=>{
-      Aos.init()  
-    },[])
+        if (sessionStorage.getItem('cf-token')){
+            setIsLogged(true)
+        }else{
+            setIsLogged(false)
+        }
+
+    },[router.push])
+    
+    let showMenu
+    if(isLogged){
+        showMenu = <HeaderAuth direction='down'/>
+    }else{
+        showMenu = <HeaderNoAuthMenu/>
+    }
     
     return (
         <>
@@ -29,17 +43,13 @@ const HeaderNoAuth = function () {
                             />
                         </NavbarBrand>
                         <div className={styles.navButton}>
-                            <Link href='/cadastro'>
-                                <Button className={styles.btnCadastro}>Cadastrar</Button>
-                            </Link>
-                            <Link href='/login'>
-                                <Button className={styles.btnLogin}>Login</Button>
-                            </Link>
-                            {/*<img /> Cart Icon */}
-                            <FontAwesomeIcon icon={faShoppingCart} className={styles.cartIcon}/>
-                            <Link href='/carrinho'>
-                                <span className={styles.prodquantity}>10</span>
-                            </Link>
+                            {showMenu}
+                            <div>
+                                <FontAwesomeIcon icon={faShoppingCart} className={styles.cartIcon}/>
+                                <Link href='/carrinho'>
+                                    <span className={styles.prodquantity}>10</span>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                     <div className={styles.search}>
@@ -58,4 +68,4 @@ const HeaderNoAuth = function () {
     )
 };
 
-export default HeaderNoAuth
+export default HeaderDefault

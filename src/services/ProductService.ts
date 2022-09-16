@@ -32,6 +32,13 @@ const ProductService = {
     },
     calcDiscount: (OldPrice: number, newPrice: number) => {
         return ((1- (newPrice / OldPrice))*100).toFixed(2) 
+    }, 
+    getFavoriteProducts: async ()=>{
+        const res = await api.get('/favoritos').catch((error)=>{
+            console.log(error.response.message)
+            return error.response
+        })
+        return res
     }
 }
 

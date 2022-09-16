@@ -50,7 +50,7 @@ const authService = {
             sessionStorage.setItem('cf-token', res.data.token)
         }
         return res
-    }
+    },
 }
 
 export default authService;

@@ -1,0 +1,36 @@
+@import '../../../../../styles/colors.module.sass'
+
+.loggedMenu
+    display: flex
+    
+    .btnLogged
+        background-color: transparent
+        border-color: $black
+        font-weight: 600
+        font-size: .9em
+
+        &:hover
+            background-color: $mediumBlack
+            border-color: $lightGray
+        &:focus
+            box-shadow: none
+            background-color: $lightGray
+            color: $mediumBlack
+    .dropdownMenu
+        background-color: $lightGray
+        width: 12em
+        
+        .dropdownItem
+            font-size: .9em
+            font-weight: 400
+            cursor: pointer
+            &:hover
+                background-color: $orange
+                opacity: .9
+                font-weight: 700
+            
+            .dropdownItemIcon
+                width: 2em
+                max-height: 1.2em
+                margin-right: 1em
+                color: $mediumBlack

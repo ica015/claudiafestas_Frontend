@@ -20,6 +20,11 @@ const Login = ()=>{
     const registerSuccess = router.query.registred
 
     useEffect(()=>{
+        if (sessionStorage.getItem('cf-token')){
+            router.push('/')
+        }
+    },[])
+    useEffect(()=>{
         if(registerSuccess === 'true'){
             setToastColor('bg-success')
             setToastIsOpen(true)
@@ -111,6 +116,7 @@ const Login = ()=>{
                         </FormGroup>
                         <div className={styles.menuBtnForm}>
                             <Link href='/recuperar_senha'>
+                                {/* Deve enviar um código aleatório para o e-mail onde o cliente deverá colocar esse código para permitir a troca de senha */}
                                 <span className={styles.forgotPassword}>Esqueci minha senha</span>
                             </Link>
                             <Button type='submit' outline className={styles.formBtn}>
