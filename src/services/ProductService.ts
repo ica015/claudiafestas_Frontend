@@ -24,7 +24,6 @@ export type ProductType = {
 const ProductService = {
     getRandonProducts: async ()=>{
         const res = await api.get('/').catch((error)=>{
-            console.log(error.response.data.message)
             return error.response
         })
 
@@ -34,8 +33,43 @@ const ProductService = {
         return ((1- (newPrice / OldPrice))*100).toFixed(2) 
     }, 
     getFavoriteProducts: async ()=>{
-        const res = await api.get('/favoritos').catch((error)=>{
-            console.log(error.response.message)
+        const token = sessionStorage.getItem('cf-token')
+        const res = await api.get('/favoritos',{
+            headers:{
+                Authorization: `Bearer ${token}`
+            }
+        }).catch((error)=>{
+            return error.response
+        })
+        return res
+    },
+    addToFavorite: async (productId: number | string)=>{
+        const token = sessionStorage.getItem('cf-token')
+        const res = await api.post('/favoritos', {productId},{
+            headers:{
+                Authorization:`Bearer ${token}`
+            }
+        }).catch((error)=>{
+            return error.response
+        })
+        return res
+    },
+    removeFavorite: async (productId: number | string)=>{
+        const token = sessionStorage.getItem('cf-token')
+        const res = await api.delete('/favoritos',{
+            headers:{
+                Authorization: `Bearer ${token}`
+            },
+            data:{ productId }
+
+        }).catch((error)=>{
+            console.log(error.response.data.message)
+            return error.response
+        })
+        return res
+    },
+    getFeaturedProducts: async ()=>{
+        const res = await api.get('/produtos/destaque').catch((error)=>{
             return error.response
         })
         return res

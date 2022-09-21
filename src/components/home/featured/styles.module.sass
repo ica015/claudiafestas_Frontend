@@ -1,5 +1,11 @@
 @import '../../../../styles/colors.module.sass'
 
+.loadingFeatures
+    font-weight: 600
+    font-size: 1.1em
+    width: 100%
+    margin: 0 auto
+    text-align: center
 .featured
     background: $white
     width: 100%
@@ -31,3 +37,17 @@
             .description
                 font-weight: 500
                 font-size: .9
+        
+        .noFeatures
+            text-align: center
+            font-weight: 500
+            display: flex
+            justify-content: center
+            align-items: center
+            width: 100%
+            gap: 1em
+            margin: 1.5em 0
+            color: $darkGray
+
+            .noFeaturedIcon
+                width: 2.5em

@@ -9,6 +9,7 @@ import Featured from "../src/components/home/featured";
 import ProductService, { ProductType } from "../src/services/ProductService";
 import styles from '../styles/Home.module.sass';
 import HeaderDefault from "../src/components/common/headerDefault";
+import FavoritesProducts from "../src/components/home/FavoritesProducts";
 
 
 interface IndexPageProps{
@@ -27,13 +28,11 @@ const Home = ({products}: IndexPageProps) =>{
         <Script src="https://kit.fontawesome.com/02dcddae4d.js" crossOrigin="anonymous"></Script>
       </Head>
       <main>
-        {/* {
-          // console.log(isLogged)
-         headerSelected
-        } */}
+        
         <HeaderDefault/>
         <Featured/>
         <CardsProducts product={products}/>
+        <FavoritesProducts/>
         <h1>Teste</h1>
         <Footer/>
       </main>
@@ -50,4 +49,5 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: 3600 * 24
   }
 }
+
 export default Home;
